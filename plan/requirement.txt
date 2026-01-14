@@ -1,0 +1,27 @@
+Requirement -
+Lets build a boilerplate for next js app with a base project structure and some claude code slash commands.
+
+Background context - 
+
+I will be starting a workshop on Learn Web development using AI (specifically claude code).
+Participants will be be non technical background and it will be their first ahnds-on experience in developing web apps.
+The worshop is for 6 hours hands-on experience where users will come up with an idea and use Claude code to ideate, refine the plan and start building the application.
+It will be a simple application (mostly UI) with optional integrations to supabase, Clerk.
+End of the workshop - each participant will have their app deployed in the vercel.
+
+What do we want now - 
+
+To have a boilerplate next.js app which can be as base for the participants to develop their app on top of it.
+This is critical as most participants are non-technical and this boilerplate should act as a guide for them with outof box integration of tailwind, nextjs, a landing page and modules like clerk and supabase.
+Participants are expected to clone this project and start refining their app idea with claude code and build on top of this. 
+Boilerplate should be neatly structured and follow the principles of next.js. 
+include a claude.md file
+define a .env.sample file 
+make sure to include enough comments at the beginning of each file
+
+also include the following - 
+.claude folder with 
+slash commands like - push to github
+mcp - add supabase mcp
+
+

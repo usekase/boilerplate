@@ -1,0 +1,86 @@
+/**
+ * Global Styles
+ * =============
+ *
+ * This file contains global CSS styles and Tailwind CSS directives.
+ * The bold, colorful theme utilities are defined here.
+ *
+ * WORKSHOP TIP: You can add custom CSS classes here, but prefer using
+ * Tailwind utility classes directly in your components when possible.
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased;
+  }
+}
+
+/* Custom component classes for the bold theme */
+@layer components {
+  /* Gradient text utility */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500;
+  }
+
+  /* Gradient button styles */
+  .btn-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-semibold
+           py-3 px-6 rounded-lg shadow-lg
+           hover:from-primary-700 hover:to-secondary-700
+           transform hover:scale-105 transition-all duration-200;
+  }
+
+  /* Card with gradient border */
+  .card-gradient {
+    @apply relative bg-white rounded-xl p-6 shadow-lg;
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(135deg, #667eea, #764ba2, #f5576c) border-box;
+    border: 2px solid transparent;
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-lg border border-white/20 shadow-xl;
+  }
+
+  /* Animated gradient background */
+  .bg-animated-gradient {
+    background: linear-gradient(-45deg, #667eea, #764ba2, #f5576c, #22d3ee);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+}
+
+/* Custom utility classes */
+@layer utilities {
+  /* Hide scrollbar but keep functionality */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Keyframe animations */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
