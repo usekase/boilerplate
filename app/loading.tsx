@@ -1,12 +1,7 @@
 /**
  * Loading Component
- * =================
  *
- * This component is shown while a page or component is loading.
- * Next.js automatically uses this for route transitions.
- *
- * WORKSHOP TIP: You can customize the loading animation to match
- * your brand colors. Try changing the gradient colors!
+ * Shown during route transitions.
  */
 
 export default function Loading() {
@@ -16,7 +11,7 @@ export default function Loading() {
         {/* Animated loading spinner with gradient */}
         <div className="relative h-16 w-16">
           <div className="absolute inset-0 rounded-full border-4 border-gray-200"></div>
-          <div className="absolute inset-0 animate-spin rounded-full border-4 border-transparent border-t-primary-600"></div>
+          <div className="absolute inset-0 animate-spin rounded-full border-4 border-transparent border-t-blue-600"></div>
         </div>
 
         {/* Loading text */}

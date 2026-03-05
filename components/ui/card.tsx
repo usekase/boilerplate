@@ -1,37 +1,20 @@
 /**
  * Card Component
- * ==============
  *
- * A flexible card component for displaying content in a contained area.
- *
- * USAGE:
- *   <Card>
- *     <CardHeader>
- *       <CardTitle>My Card</CardTitle>
- *     </CardHeader>
- *     <CardContent>
- *       <p>Card content goes here</p>
- *     </CardContent>
- *   </Card>
- *
- * WORKSHOP TIP: Cards are great for displaying features, testimonials,
- * or any grouped content. Try the 'gradient' variant for extra flair!
+ * Flexible card for displaying grouped content.
  */
 
 import { cn } from "@/lib/utils";
 
 // Card container
-export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: "default" | "gradient";
-}
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function Card({ className, variant = "default", ...props }: CardProps) {
+export function Card({ className, ...props }: CardProps) {
   return (
     <div
       className={cn(
         "rounded-xl bg-white shadow-lg overflow-hidden",
         "transition-all duration-300 hover:shadow-xl",
-        variant === "gradient" && "card-gradient",
         className
       )}
       {...props}

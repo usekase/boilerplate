@@ -1,12 +1,7 @@
 /**
  * Error Component
- * ===============
  *
- * This component is shown when an error occurs in a route segment.
- * It provides a way to recover from errors without losing the whole page.
- *
- * WORKSHOP TIP: You can customize this page to match your brand.
- * The 'reset' function lets users try again without refreshing.
+ * Shown when an error occurs in a route segment.
  */
 
 "use client";

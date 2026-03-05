@@ -1,13 +1,13 @@
-# Workshop Next.js Boilerplate 🚀
+# Next.js Starter Template
 
-A beginner-friendly Next.js starter template for building and deploying web applications with AI assistance.
+A Next.js starter template with Tailwind CSS, Supabase Auth, and Vercel deployment.
 
 ## Quick Start
 
 ```bash
 # 1. Clone the repository
 git clone <your-repo-url>
-cd workshop
+cd boilerplate
 
 # 2. Install dependencies
 npm install
@@ -19,33 +19,7 @@ cp .env.sample .env.local
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your app!
-
-## Using Claude Code
-
-Start Claude Code in your project:
-
-```bash
-claude
-```
-
-### Slash Commands
-
-| Command | Description |
-|---------|-------------|
-| `/push [message]` | Commit and push changes to GitHub |
-| `/deploy` | Deploy to Vercel |
-| `/new-page [name]` | Create a new page |
-| `/new-component [name]` | Create a new component |
-
-### Example Prompts
-
-Try asking Claude:
-
-- "Change the hero section to be about [my app idea]"
-- "Add a contact form to collect emails"
-- "Create a new page called /pricing"
-- "Make the app use [my brand colors]"
+Open [http://localhost:3000](http://localhost:3000) to see your app.
 
 ## Project Structure
 
@@ -59,48 +33,43 @@ app/                    # Pages and routes
 components/            # Reusable components
 ├── ui/               # Button, Card, Input
 ├── layout/           # Header, Footer
-└── landing/          # Hero, Features, CTA
+└── landing/          # Hero
 
-lib/                   # Utilities
-.claude/              # Claude Code config
+lib/                   # Utilities (Supabase client, helpers)
 ```
 
 ## Features
 
-- ⚡ **Next.js 15** with App Router
-- 🎨 **Tailwind CSS** with bold, colorful theme
-- 🔐 **Clerk Auth** (optional) - just add your keys
-- 🚀 **Vercel Ready** - deploy in minutes
-- 🤖 **Claude Code** - AI-powered development
+- **Next.js 16** with App Router
+- **Tailwind CSS 4**
+- **Supabase Auth + DB** (optional) - just add your keys
+- **Vercel Ready** - deploy in minutes
 
-## Adding Authentication
+## Adding Authentication & Database
 
-1. Create a Clerk account at https://clerk.com
-2. Add your keys to `.env.local`:
+1. Create a Supabase project at https://supabase.com/dashboard
+2. Go to Project Settings → API and copy your keys
+3. Add to `.env.local`:
 
 ```env
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_xxxxx
-CLERK_SECRET_KEY=sk_test_xxxxx
+NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGc...
 ```
 
-3. The auth features will automatically work!
+4. The auth features will automatically work!
 
 ## Deployment
 
 ```bash
-# Using the slash command
-/deploy
-
-# Or manually
 npm run build
 npx vercel --prod
 ```
 
-Don't forget to add your environment variables in the Vercel dashboard!
+Don't forget to add your environment variables in the Vercel dashboard.
 
 ## Documentation
 
-- [CLAUDE.md](./CLAUDE.md) - Guide for working with Claude Code
+- [CLAUDE.md](./CLAUDE.md) - Project guide
 - [PREREQUISITES.md](./PREREQUISITES.md) - Setup requirements
 
 ## Scripts
@@ -111,7 +80,3 @@ Don't forget to add your environment variables in the Vercel dashboard!
 | `npm run build` | Build for production |
 | `npm run start` | Run production build |
 | `npm run lint` | Check for issues |
-
----
-
-Built with ❤️ for the Web Development Workshop

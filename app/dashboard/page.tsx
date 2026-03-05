@@ -1,44 +1,36 @@
 /**
  * Dashboard Page
- * ==============
  *
- * This is a protected page that requires authentication.
- * Users are redirected here after signing in.
- *
- * WORKSHOP TIP: This is where you'll build the main functionality
- * of your app! Start by describing what you want to Claude:
- * "Add a form to collect user feedback" or
- * "Create a list of items that users can add and delete"
- *
- * NOTE: If Clerk is not configured, this page shows a demo dashboard.
+ * Protected page that requires authentication.
+ * Shows a demo dashboard if Supabase is not configured.
  */
 
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Header } from "@/components/layout/header";
 import { Container } from "@/components/layout/container";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-
-// Check if Clerk is configured
-const isClerkConfigured = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+import {
+  isSupabaseConfigured,
+  createServerSupabaseClient,
+} from "@/lib/supabase";
 
 export default async function DashboardPage() {
   let userId: string | null = null;
-  let userName: string | null = null;
+  let userEmail: string | null = null;
 
-  // Only check auth if Clerk is configured
-  if (isClerkConfigured) {
-    const { auth, currentUser } = await import("@clerk/nextjs/server");
-    const authResult = await auth();
-    userId = authResult.userId;
+  // Only check auth if Supabase is configured
+  if (isSupabaseConfigured) {
+    const supabase = await createServerSupabaseClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-    if (!userId) {
+    if (!user) {
       redirect("/sign-in");
     }
 
-    const user = await currentUser();
-    userName = user?.firstName || null;
+    userId = user.id;
+    userEmail = user.email ?? null;
   }
 
   return (
@@ -50,7 +42,7 @@ export default async function DashboardPage() {
           {/* Welcome section */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-900">
-              Welcome{userName ? ` back, ${userName}` : ""}! 👋
+              Welcome{userEmail ? `, ${userEmail}` : ""}!
             </h1>
             <p className="mt-2 text-gray-600">
               This is your dashboard. Start building something amazing!
@@ -58,12 +50,13 @@ export default async function DashboardPage() {
           </div>
 
           {/* Auth not configured notice */}
-          {!isClerkConfigured && (
+          {!isSupabaseConfigured && (
             <Card className="mb-6 border-amber-200 bg-amber-50">
               <CardContent className="py-4">
                 <p className="text-amber-800">
-                  <strong>Note:</strong> Authentication is not configured.
-                  This is a demo dashboard. Add your Clerk keys to enable user authentication.
+                  <strong>Note:</strong> Authentication is not configured. This
+                  is a demo dashboard. Add your Supabase keys to enable user
+                  authentication.
                 </p>
               </CardContent>
             </Card>
@@ -74,32 +67,33 @@ export default async function DashboardPage() {
             {/* Getting Started Card */}
             <Card className="col-span-full lg:col-span-2">
               <CardHeader>
-                <CardTitle>🚀 Getting Started</CardTitle>
+                <CardTitle>Getting Started</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-4">
-                  This is your dashboard page. Here are some ideas for what to build:
+                  This is your dashboard page. Here are some ideas for what to
+                  build:
                 </p>
                 <ul className="space-y-2 text-gray-600">
                   <li className="flex items-start gap-2">
-                    <span className="text-primary-500">•</span>
+                    <span className="text-blue-500">•</span>
                     <span>Add a form to collect user input</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-primary-500">•</span>
+                    <span className="text-blue-500">•</span>
                     <span>Create a list of items (todos, notes, etc.)</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-primary-500">•</span>
+                    <span className="text-blue-500">•</span>
                     <span>Display data in cards or tables</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-primary-500">•</span>
+                    <span className="text-blue-500">•</span>
                     <span>Add charts or visualizations</span>
                   </li>
                 </ul>
                 <p className="mt-4 text-sm text-gray-500">
-                  💡 Tip: Ask Claude to help you build these features!
+                  Start building your app features here.
                 </p>
               </CardContent>
             </Card>
@@ -107,7 +101,7 @@ export default async function DashboardPage() {
             {/* Quick Stats Card */}
             <Card>
               <CardHeader>
-                <CardTitle>📊 Quick Stats</CardTitle>
+                <CardTitle>Quick Stats</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -154,7 +148,7 @@ export default async function DashboardPage() {
                 Your Content Here
               </h3>
               <p className="mt-2 text-gray-500">
-                Use Claude to help you add features to this page!
+                Add your features and content here.
               </p>
             </div>
           </div>

@@ -1,16 +1,7 @@
 /**
  * Input Component
- * ===============
  *
- * A styled input field for forms.
- *
- * USAGE:
- *   <Input placeholder="Enter your email" />
- *   <Input type="password" />
- *   <Input disabled />
- *
- * WORKSHOP TIP: Use this component for all form inputs to keep
- * a consistent look throughout your app.
+ * Styled input field for forms.
  */
 
 import { forwardRef } from "react";
@@ -32,7 +23,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           "text-gray-900 placeholder:text-gray-400",
           "transition-all duration-200",
           // Focus styles
-          "focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent",
+          "focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:border-transparent",
           // Default border
           "border-gray-300",
           // Error state

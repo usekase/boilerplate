@@ -1,17 +1,7 @@
 /**
  * Container Component
- * ===================
  *
- * A wrapper component that centers content and adds consistent padding.
- * Use this to wrap page content for proper alignment.
- *
- * USAGE:
- *   <Container>
- *     <h1>My Page Content</h1>
- *   </Container>
- *
- * WORKSHOP TIP: Always wrap your page content in a Container
- * to maintain consistent spacing across your app.
+ * Centers content and adds consistent padding.
  */
 
 import { cn } from "@/lib/utils";

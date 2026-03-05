@@ -1,15 +1,7 @@
 /**
  * Root Layout Component
- * =====================
  *
- * This is the main layout wrapper for the entire application.
- * It includes:
- * - Providers wrapper (includes ClerkProvider when configured)
- * - Global font configuration
- * - HTML metadata
- *
- * WORKSHOP TIP: The app works with or without Clerk keys.
- * When you add your Clerk keys to .env.local, auth features become available.
+ * Main layout wrapper for the application.
  */
 
 import type { Metadata } from "next";
@@ -24,12 +16,10 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-// Default metadata for the application
-// WORKSHOP TIP: Update these values to match your project!
 export const metadata: Metadata = {
-  title: "My Awesome App",
-  description: "Built with Next.js, Tailwind CSS, and Claude Code",
-  keywords: ["nextjs", "react", "tailwind", "workshop"],
+  title: "My App",
+  description: "Built with Next.js and Tailwind CSS",
+  keywords: ["nextjs", "react", "tailwind"],
   icons: {
     icon: "/favicon.svg",
   },

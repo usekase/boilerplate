@@ -1,11 +1,5 @@
 /**
  * Utility Functions
- * =================
- *
- * This file contains helper functions used throughout the application.
- *
- * WORKSHOP TIP: The cn() function is super useful for combining
- * Tailwind classes conditionally. You'll see it used in all components.
  */
 
 import { clsx, type ClassValue } from "clsx";

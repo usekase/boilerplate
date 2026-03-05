@@ -1,11 +1,7 @@
 /**
  * Footer Component
- * ================
  *
- * The site footer with links and copyright information.
- *
- * WORKSHOP TIP: Update the links and text to match your project.
- * You can add social media links, terms of service, etc.
+ * Site footer with links and copyright information.
  */
 
 import Link from "next/link";
@@ -21,14 +17,13 @@ export function Footer() {
           {/* Brand section */}
           <div className="col-span-1 md:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary-600 to-secondary-600">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-900">
                 <span className="text-lg font-bold text-white">A</span>
               </div>
               <span className="text-xl font-bold text-gray-900">AppName</span>
             </Link>
             <p className="text-gray-600 max-w-md">
-              Built with Next.js, Tailwind CSS, and Claude Code.
-              Create something amazing!
+              Built with Next.js and Tailwind CSS.
             </p>
           </div>
 
@@ -39,7 +34,7 @@ export function Footer() {
               <li>
                 <Link
                   href="#features"
-                  className="text-gray-600 hover:text-primary-600 transition-colors"
+                  className="text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   Features
                 </Link>
@@ -47,7 +42,7 @@ export function Footer() {
               <li>
                 <Link
                   href="#pricing"
-                  className="text-gray-600 hover:text-primary-600 transition-colors"
+                  className="text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   Pricing
                 </Link>
@@ -62,7 +57,7 @@ export function Footer() {
               <li>
                 <Link
                   href="#about"
-                  className="text-gray-600 hover:text-primary-600 transition-colors"
+                  className="text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   About
                 </Link>
@@ -70,7 +65,7 @@ export function Footer() {
               <li>
                 <Link
                   href="#contact"
-                  className="text-gray-600 hover:text-primary-600 transition-colors"
+                  className="text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   Contact
                 </Link>

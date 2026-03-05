@@ -1,18 +1,16 @@
-# CLAUDE.md - Workshop Project Guide
+# CLAUDE.md - Project Guide
 
 ## Project Overview
 
-This is a Next.js workshop boilerplate for building and deploying web applications.
-Participants are learning to build web apps with AI assistance from Claude Code.
-
-**Target Audience**: Non-technical participants in a 6-hour hands-on workshop.
+A Next.js starter template for building and deploying web applications.
 
 ## Technology Stack
 
-- **Framework**: Next.js 15 with App Router
+- **Framework**: Next.js 16 with App Router
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS (bold, colorful theme)
-- **Authentication**: Clerk (optional - works without env vars)
+- **Styling**: Tailwind CSS 4
+- **Authentication**: Supabase Auth (optional - works without env vars)
+- **Database**: Supabase (Postgres)
 - **Deployment**: Vercel
 
 ## Key Commands
@@ -30,15 +28,17 @@ npm run start    # Run production build locally
 app/                    # Pages and API routes (file-based routing)
 ├── page.tsx           # Landing page (home)
 ├── dashboard/         # Protected user dashboard
-├── (auth)/            # Authentication pages
+├── (auth)/            # Authentication pages + server actions
 └── api/               # API routes
 
 components/            # Reusable UI components
 ├── ui/               # Basic components (Button, Card, Input)
 ├── layout/           # Layout components (Header, Footer, Container)
-└── landing/          # Landing page sections (Hero, Features, CTA)
+└── landing/          # Landing page sections (Hero)
 
 lib/                   # Utility functions
+├── supabase.ts       # Supabase client utilities (browser, server, middleware)
+└── utils.ts          # General utilities (cn helper)
 public/               # Static assets (images, icons)
 .claude/              # Claude Code configuration
 ```
@@ -48,7 +48,6 @@ public/               # Static assets (images, icons)
 - Use TypeScript for all new files
 - Components go in `/components` with PascalCase names
 - Use Tailwind CSS for styling (no separate CSS files)
-- Add file header comments explaining purpose
 - Keep components small and focused
 
 ## Working with This Project
@@ -63,86 +62,60 @@ Pages live in `/app`. Create a folder with `page.tsx` inside.
 /app/blog/[id]/page.tsx → /blog/123 dynamic route
 ```
 
-**Use the slash command**: `/new-page about`
-
 ### Creating Components
 
 Put reusable components in `/components/ui/`.
 Put page-specific sections in `/components/[feature]/`.
 
-**Use the slash command**: `/new-component MyComponent`
+### Using Authentication (Supabase)
 
-### Using Authentication (Clerk)
+Supabase Auth is pre-configured but optional. To enable:
 
-Clerk is pre-configured but optional. To enable:
-
-1. Get keys from https://dashboard.clerk.com
-2. Add to `.env.local`:
+1. Create a project at https://supabase.com/dashboard
+2. Go to Project Settings → API
+3. Add to `.env.local`:
    ```
-   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_xxxxx
-   CLERK_SECRET_KEY=sk_test_xxxxx
+   NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGc...
    ```
-3. Use Clerk components:
+
+4. Use Supabase in server components:
    ```tsx
-   import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+   import { createServerSupabaseClient } from "@/lib/supabase";
 
-   <SignedIn>Only visible when logged in</SignedIn>
-   <SignedOut>Only visible when logged out</SignedOut>
+   const supabase = await createServerSupabaseClient();
+   const { data: { user } } = await supabase.auth.getUser();
+   if (!user) redirect("/sign-in");
    ```
 
-4. Protect server components:
+5. Use Supabase in client components:
    ```tsx
-   import { auth } from "@clerk/nextjs/server";
+   import { createClient } from "@/lib/supabase";
 
-   const { userId } = await auth();
-   if (!userId) redirect("/sign-in");
+   const supabase = createClient();
    ```
 
-## Slash Commands
+### Using the Database (Supabase)
 
-- `/push` - Commit and push to GitHub
-- `/deploy` - Deploy to Vercel
-- `/new-page [name]` - Create a new page
-- `/new-component [name]` - Create a new component
+Once Supabase is configured, you can also use it as your database:
 
-## Common Tasks for Participants
+```tsx
+const supabase = await createServerSupabaseClient();
+const { data, error } = await supabase.from("my_table").select("*");
+```
 
-Try asking Claude to help with these:
-
-- "Change the hero section text to be about my app idea"
-- "Add a new page called /about with information about my project"
-- "Create a contact form that collects name and email"
-- "Make the features section show my own features"
-- "Add a button that does [something]"
-- "Change the colors to [my brand colors]"
-
-## File Header Comments
-
-Every file includes a comment block at the top with:
-- What the file does
-- How to use it
-- Workshop tips for customization
-
-Look for `WORKSHOP TIP:` comments throughout the code!
+Create tables in the Supabase dashboard under Table Editor.
 
 ## What NOT to Change (Unless Asked)
 
 - `next.config.ts` - Framework configuration
-- `tailwind.config.ts` - Already set up correctly
-- `middleware.ts` - Auth configuration (remove entirely if not using auth)
+- `proxy.ts` - Auth middleware (remove entirely if not using auth)
+- `lib/supabase.ts` - Supabase client setup
 - `.env.local` - Secrets (never commit this file)
 
 ## Deployment Checklist
 
-1. ✅ Run `npm run build` - fix any errors
-2. ✅ Commit all changes: `/push "My changes"`
-3. ✅ Deploy: `/deploy`
-4. ✅ Add environment variables in Vercel dashboard (for Clerk)
-5. ✅ Share your deployed URL!
-
-## Need Help?
-
-- Ask Claude! Describe what you want to build
-- Look at existing components for patterns
-- Check the WORKSHOP TIP comments in files
-- The `/new-page` and `/new-component` commands scaffold properly structured code
+1. Run `npm run build` - fix any errors
+2. Commit and push all changes
+3. Deploy to Vercel
+4. Add environment variables in Vercel dashboard (for Supabase)
