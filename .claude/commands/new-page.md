@@ -23,8 +23,8 @@ Then create the page with:
 5. **Placeholder Content** - That I can easily customize
 
 If it's a protected page:
-- Add the authentication check using `auth()` from Clerk
-- Redirect to sign-in if not authenticated
+- Add the authentication check using `createServerSupabaseClient()` from `@/lib/supabase`
+- Redirect to `/sign-in` if not authenticated
 
 Follow the existing code style and patterns in this project.
-Use the bold, colorful theme that matches the rest of the app.
+Use Tailwind CSS for styling, matching the minimal design of the rest of the app.

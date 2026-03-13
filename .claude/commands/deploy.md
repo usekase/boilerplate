@@ -24,7 +24,7 @@ Please help me deploy this project to Vercel.
    - Any next steps (like setting up environment variables)
 
 IMPORTANT REMINDERS:
-- Make sure to set up environment variables in Vercel dashboard for Clerk:
-  - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
-  - CLERK_SECRET_KEY
+- Make sure to set up environment variables in Vercel dashboard for Supabase:
+  - NEXT_PUBLIC_SUPABASE_URL
+  - NEXT_PUBLIC_SUPABASE_ANON_KEY
 - The first deployment may ask you to link to an existing project or create a new one
